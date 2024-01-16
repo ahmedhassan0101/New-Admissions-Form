@@ -4,7 +4,7 @@ const classes =
 const Btns = (props) => {
   const { back, nextClick, backClick, error, submit } = props;
   return (
-    <div className="flex flex-col border-[#D5EAFF]  border-t-2">
+    <div className="flex flex-col border-t-2 border-blue-800">
       {error && (
         <span className="flex mt-1 font-medium tracking-wide text-pink-500 text-md">
           {error}
@@ -15,7 +15,7 @@ const Btns = (props) => {
           <button
             type="button"
             onClick={backClick}
-            className={`${classes} text-dark-5 hover:text-[#4C9BFB]  active:shadow-[0px_0px_0px_5px_#D5EAFF] bg-white`}
+            className={`${classes} text-blue-800 hover:text-[#4C9BFB]  active:shadow-[0px_0px_0px_5px_#D5EAFF] bg-white`}
           >
             Back
           </button>
@@ -23,7 +23,7 @@ const Btns = (props) => {
         <button
           onClick={nextClick}
           type="button"
-          className={`${classes} text-white hover:bg-[#378FFA] active:bg-[#378FFA] active:shadow-[0px_0px_0px_5px_#D5EAFF] bg-[#4C9BFB]`}
+          className={`${classes} text-white hover:bg-[#378FFA] active:bg-[#378FFA] active:shadow-[0px_0px_0px_5px_#D5EAFF] bg-blue-800`}
         >
           {submit && "Submit"}
           {!submit && "Next"}

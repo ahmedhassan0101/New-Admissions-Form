@@ -1,7 +1,7 @@
 export const isNotEmpty = (value) => value.trim() !== "";
 
 export const isSelected = (value) => {
-  return value.trim() !== "Any" && value.trim() !== "";
+  return value.trim() !== "-Please choose an option-" && value.trim() !== "";
 };
 
 export const isValidEmail = (email) => {

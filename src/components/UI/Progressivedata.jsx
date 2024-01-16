@@ -2,67 +2,21 @@ import React, { useContext } from "react";
 import FormContext from "../../utils/form-context";
 const Progressivedata = () => {
   const {
-    formState: { stepOne, stepTwo, stepThree },
+    formState: { stepOne, stepTwo, stepThree, stepFour },
   } = useContext(FormContext);
-
+  // max-lg:w-7
   return (
     <>
-      {/* For PC Screen */}
-      <div className="flex items-center justify-center mt-10 mb-10 max-md:hidden">
-        <div className="flex items-center">
-          <div className="bg-[#4C9BFB] rounded-full text-white p-2 py-3 border-[#D5EAFF] w-[210px] text-sm text-center border-4 font-medium">
-            <h1>
-              <span>1. </span>Personal Information.
-            </h1>
-          </div>
-          <div
-            className={`w-10 h-[4px] ${
-              stepOne ? "bg-[#4C9BFB]" : "bg-[#D5EAFF]"
-            }`}
-          ></div>
-        </div>
+      {/* For Mobile Screen max-md:flex hidden*/}
 
+      <div className="flex items-center justify-center h-[90px]">
         <div className="flex items-center">
           <div
             className={`${
-              stepOne
-                ? "bg-[#4C9BFB]  text-white"
-                : "bg-[#D5EAFF] text-[#4C9BFB]"
-            } rounded-full  p-2 py-3 border-[#D5EAFF] w-[210px] text-sm text-center border-4 font-medium`}
-          >
-            <h1>
-              <span>2. </span>Academic Information.
-            </h1>
-          </div>
-          <div
-            className={`w-10 h-[4px] ${
-              stepTwo ? "bg-[#4C9BFB]" : "bg-[#D5EAFF]"
-            }`}
-          ></div>
-        </div>
-
-        <div className="flex items-center">
-          <div
-            className={`${
-              stepTwo
-                ? "bg-[#4C9BFB]  text-white"
-                : "bg-[#D5EAFF] text-[#4C9BFB]"
-            } rounded-full  p-2 py-3 border-[#D5EAFF] w-[210px] text-sm text-center border-4 font-medium`}
-          >
-            <h1>
-              <span>3. </span>Additional Information.
-            </h1>
-          </div>
-        </div>
-      </div>
-      {/* For Mobile Screen */}
-
-      <div className="items-center justify-center hidden mt-5 mb-5 max-md:flex">
-        <div className="flex items-center">
-          <div
-            className={`${
-              !stepOne ? "p-2 py-3 w-[210px]" : "w-12 h-12 p-[10px]"
-            } bg-[#4C9BFB] rounded-full text-white border-[#D5EAFF] text-sm text-center border-4`}
+              !stepOne
+                ? "p-2 py-3 w-[210px]"
+                : "w-12 h-12 p-[10px] max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
+            } bg-blue-800 rounded-full text-white border-[#D5EAFF] text-sm text-center border-4`}
           >
             <h1>
               <span>1</span>
@@ -70,32 +24,31 @@ const Progressivedata = () => {
             </h1>
           </div>
           <div
-            className={`w-10 h-[4px] ${
-              stepOne ? "bg-[#4C9BFB]" : "bg-[#D5EAFF]"
+            className={`w-10 h-[4px] max-lg:w-7 ${
+              stepOne ? "bg-blue-800" : "bg-[#D5EAFF]"
             }`}
           ></div>
         </div>
-        {/*  */}
 
         <div className="flex items-center">
           <div
             className={` ${
               !stepOne
-                ? "bg-[#D5EAFF] w-12 h-12 p-[10px] text-[#4C9BFB]"
+                ? "bg-[#D5EAFF] w-12 h-12 p-[10px] text-blue-800 max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
                 : stepOne && !stepTwo
-                ? "bg-[#4C9BFB] p-2 py-3 w-[210px] text-white"
-                : "bg-[#4C9BFB]  w-12 h-12 p-[10px] text-white"
+                ? "bg-blue-800 p-2 py-3 w-[210px] text-white"
+                : "bg-blue-800  w-12 h-12 p-[10px] text-white max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
             }
               rounded-full  border-[#D5EAFF] text-sm text-center border-4`}
           >
             <h1>
               <span>2</span>
-              {stepOne && !stepTwo ? ". Academic Information." : ""}
+              {stepOne && !stepTwo ? ". Personal Information." : ""}
             </h1>
           </div>
           <div
-            className={`w-10 h-[4px] ${
-              stepTwo ? "bg-[#4C9BFB]" : "bg-[#D5EAFF]"
+            className={`w-10 max-lg:w-7 h-[4px] ${
+              stepTwo ? "bg-blue-800" : "bg-[#D5EAFF]"
             }`}
           ></div>
         </div>
@@ -104,16 +57,39 @@ const Progressivedata = () => {
           <div
             className={` ${
               !stepTwo
-                ? "bg-[#D5EAFF] w-12 h-12 p-[10px] text-[#4C9BFB]"
+                ? "bg-[#D5EAFF] w-12 h-12 p-[10px] text-blue-800 max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
                 : stepTwo && !stepThree
-                ? "bg-[#4C9BFB] p-2 py-3 w-[210px] text-white"
-                : "bg-[#4C9BFB]  w-12 h-12 p-[10px] text-white"
+                ? "bg-blue-800 p-2 py-3 w-[210px] text-white"
+                : "bg-blue-800  w-12 h-12 p-[10px] text-white max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
             }
               rounded-full  border-[#D5EAFF] text-sm text-center border-4`}
           >
             <h1>
               <span>3</span>
-              {stepTwo && !stepThree ? ". Additional Information." : ""}
+              {stepTwo && !stepThree ? ". Previous Study." : ""}
+            </h1>
+          </div>
+          <div
+            className={`w-10 max-lg:w-7 h-[4px] ${
+              stepThree ? "bg-blue-800" : "bg-[#D5EAFF]"
+            }`}
+          ></div>
+        </div>
+
+        <div className="flex items-center">
+          <div
+            className={` ${
+              !stepThree
+                ? "bg-[#D5EAFF] w-12 h-12 p-[10px] text-blue-800 max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
+                : stepThree && !stepFour
+                ? "bg-blue-800 p-2 py-3 w-[210px] text-white"
+                : "bg-blue-800  w-12 h-12 p-[10px] text-white max-lg:w-9 max-lg:h-9 max-lg:p-[5px]"
+            }
+              rounded-full  border-[#D5EAFF] text-sm text-center border-4`}
+          >
+            <h1>
+              <span>4</span>
+              {stepThree && !stepFour ? ". Admission Information." : ""}
             </h1>
           </div>
         </div>
@@ -121,8 +97,5 @@ const Progressivedata = () => {
     </>
   );
 };
-
+//Previous Study
 export default Progressivedata;
-<div class="group is-published">
-  <div class="hidden group-[.is-published]:block">Published</div>
-</div>;

@@ -34,7 +34,10 @@ const RadioCheckBox = (props) => {
     setSelectedOption(event.target.value);
     setError("");
   };
-  const valueIsValid = selectedOption !== "";
+
+  const radioIsValid = selectedOption !== "";
+  const checkboxIsValid = selectedCheckboxes !== "";
+
   const validityKey = valueKey + "IsValid";
 
   // todo ===[INPUT VALIDATION]===
@@ -47,7 +50,7 @@ const RadioCheckBox = (props) => {
       });
       if (required) {
         setValidation((prevState) => {
-          return { ...prevState, [validityKey]: valueIsValid };
+          return { ...prevState, [validityKey]: radioIsValid };
         });
       }
     }
@@ -56,12 +59,17 @@ const RadioCheckBox = (props) => {
       setValue((prevState) => {
         return { ...prevState, [valueKey]: selectedCheckboxes };
       });
+      if (required) {
+        setValidation((prevState) => {
+          return { ...prevState, [validityKey]: checkboxIsValid };
+        });
+      }
     }
   }, [selectedOption, selectedCheckboxes]);
   // todo ===[LIFTING STATE UP TO EVERY INDIVIDUAL INPUT]===
   return (
     <fieldset className="sm:col-span-3">
-    {/* // todo ===[LABLE]=== */}
+      {/* // todo ===[LABLE]=== */}
       <legend
         className={`text-sm font-medium leading-6 text-gray-900  ${
           required && "after:content-['*'] after:ml-0.5 after:text-pink-500"
@@ -71,7 +79,7 @@ const RadioCheckBox = (props) => {
       </legend>
       {/* // todo ===[IF RADIO]=== */}
       {radio && (
-        <div className={`grid grid-cols-${colSpan} mt-4`}>
+        <div className={`grid col-span-full mt-4`}>
           {options.map((option) => (
             <div key={option.inputId} className="flex items-center gap-x-3">
               <input
@@ -81,7 +89,7 @@ const RadioCheckBox = (props) => {
                 value={option.labelName}
                 checked={selectedOption === option.labelName}
                 onChange={valueChangeHandler}
-                className="w-4 h-4 text-teal-300 border-gray-300 focus:ring-teal-300"
+                className="w-4 h-4 text-green-500 border-gray-300 focus:ring-green-500"
               />
               <label
                 htmlFor={option.inputId}
@@ -106,7 +114,7 @@ const RadioCheckBox = (props) => {
                   value={option.labelName}
                   onChange={checkboxChangeHandler}
                   checked={selectedCheckboxes.includes(option.labelName)}
-                  className="w-4 h-4 text-teal-300 border-gray-300 rounded focus:ring-teal-300"
+                  className="w-4 h-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
                 />
               </div>
               <div className="text-sm leading-6">

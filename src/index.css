@@ -13,5 +13,20 @@ body {
   padding: 0;
   color: rgb(0, 0, 0);
   font-family: "Montserrat", sans-serif;
+  background-image: url("./assets/international-day-education-celebration.jpg");
+  object-fit: cover;
+  background-repeat: no-repeat;
+}
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }
 
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

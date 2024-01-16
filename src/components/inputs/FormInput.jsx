@@ -7,7 +7,7 @@ import {
   isSelected,
 } from "../../utils/ValidationRules";
 const classes =
-  "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset  focus:ring-2 focus:ring-inset focus:ring-[#4C9BFB] sm:text-sm sm:leading-6 ring-gray-300 placeholder:text-gray-400";
+  "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset  focus:ring-2 focus:ring-inset focus:ring-blue-800 sm:text-sm sm:leading-6 ring-gray-300 placeholder:text-gray-400";
 
 const FormInput = (props) => {
   const {
@@ -81,7 +81,7 @@ const FormInput = (props) => {
   }, [enteredValue]);
   // todo ===[LIFTING STATE UP TO EVERY INDIVIDUAL INPUT]===
   return (
-    <div className={colSpan ? `sm:col-span-${colSpan}` : "col-span-full"}>
+    <div className={colSpan ? `${colSpan}` : "col-span-full"}>
       {/* // todo ===[LABLE]=== */}
       <label
         htmlFor={inputId}
@@ -103,7 +103,7 @@ const FormInput = (props) => {
               hasError && required
                 ? "ring-pink-500 text-pink-500 focus:ring-pink-500 form-input"
                 : !hasError && valueIsValid
-                ? "ring-teal-300"
+                ? "ring-green-500"
                 : "ring-gray-300"
             }`}
             pattern={pattern}
@@ -121,7 +121,7 @@ const FormInput = (props) => {
               hasError && required
                 ? "ring-pink-500 text-pink-500 focus:ring-pink-500 "
                 : !hasError && valueIsValid
-                ? "ring-teal-300"
+                ? "ring-green-500"
                 : "ring-gray-300"
             }`}
             value={enteredValue}

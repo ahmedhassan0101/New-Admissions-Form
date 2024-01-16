@@ -6,7 +6,7 @@ import FormInput from "../inputs/FormInput";
 import { areAllPropertiesTrue } from "../../utils/ValidationRules";
 import FormContext from "../../utils/form-context";
 
-const PersonalStep = () => {
+const PersonalStep = ({ handleNext }) => {
   // todo ===[STATE BLOCK]===
   const [error, setError] = useState("");
   const [personalFormData, setPersonalFormData] = useState({
@@ -15,25 +15,24 @@ const PersonalStep = () => {
     lastName: "",
     email: "",
     phoneNumber: "",
-    countryName: "",
-    cityName: "",
-    address: "",
+    nationality: "",
+    nationalID: "",
+    birthBlace: "",
     birthday: "",
     gender: "",
   });
-  console.log(personalFormData);
   const [personalFormValidity, setPersonalFormValidity] = useState({
     firstNameIsValid: false,
     middleNameIsValid: false,
+    lastNameIsValid: false,
     emailIsValid: false,
     phoneNumberIsValid: false,
-    countryNameIsValid: false,
-    cityNameIsValid: false,
-    addressIsValid: false,
+    nationalityIsValid: false,
+    nationalIDIsValid: false,
+    birthBlaceIsValid: false,
     birthdayIsValid: false,
     genderIsValid: false,
   });
-  console.log(personalFormValidity);
   // todo ===[STATE BLOCK]===
   //? === ======================= ===
   // todo ===[CONTEXT BLOCK]===
@@ -42,7 +41,6 @@ const PersonalStep = () => {
     dispatch,
     addToFormCollections,
   } = useContext(FormContext);
-  const borderColor = stepOne ? "teal-400" : "[#D5EAFF]";
 
   let formIsValid = false;
   if (areAllPropertiesTrue(personalFormValidity)) {
@@ -54,40 +52,33 @@ const PersonalStep = () => {
       setError("Please fill the required fields");
       return;
     }
-
+    handleNext();
     addToFormCollections("personalInfo", personalFormData);
     setError("");
     dispatch({ type: "ONE_IS_DONE" });
   };
   // todo ===[CONTEXT BLOCK]===
-  
+
   return (
-    <FormBox title={"Personal Information."} step="1" color={borderColor}>
-      <div
-        className={`${
-          !stepOne
-            ? "visible h-auto overflow-visible"
-            : "invisible h-0 overflow-hidden"
-        } `}
-      >
-        <div className="grid grid-cols-1 mt-20 mb-10 gap-x-6 gap-y-8 sm:grid-cols-6">
+    <FormBox>
+      <div className="flex flex-col justify-between h-full">
+        <div className="grid grid-cols-1 mb-8 gap-x-6 gap-y-8 sm:grid-cols-6">
           <FormInput
             input
             required
-            colSpan="2"
+            colSpan="sm:col-span-2"
             inputId="first-name"
             labelName="First name"
             errorMsg="First name is required"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}
             valueKey={"firstName"}
-            validityKey={"firstNameIsValid"}
           />
 
           <FormInput
             input
             required
-            colSpan="2"
+            colSpan="sm:col-span-2"
             inputId="middle-name"
             labelName="Middle Name"
             errorMsg="Middle name is required"
@@ -95,14 +86,17 @@ const PersonalStep = () => {
             setValidation={setPersonalFormValidity}
             valueKey={"middleName"}
           />
-          
+
           <FormInput
             input
             labelName="Last name"
             inputId="last-name"
             setValue={setPersonalFormData}
+            setValidation={setPersonalFormValidity}
             valueKey={"lastName"}
-            colSpan="2"
+            errorMsg="Last name is required"
+            colSpan="sm:col-span-2"
+            required
           />
 
           <FormInput
@@ -111,21 +105,21 @@ const PersonalStep = () => {
             labelName="Email address"
             inputId="email"
             inputType="email"
-            colSpan="3"
+            colSpan="sm:col-span-3"
             placeholder="ex: myname@example.com"
             errorMsg="Email address is not valid"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}
             valueKey={"email"}
           />
-          
+
           <FormInput
             input
             required
             labelName="Phone Number"
             inputId="phone"
             inputType="tel"
-            colSpan="3"
+            colSpan="sm:col-span-3"
             errorMsg="Phone Number is not valid"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}
@@ -133,40 +127,40 @@ const PersonalStep = () => {
             placeholder="ex: 012 3456 7890"
             pattern="01[0125][0-9]{8}"
           />
-          
+
           <FormInput
-            select
-            labelName="Country"
-            inputId="country"
-            colSpan="3"
-            errorMsg="Country name is required"
+            input
+            labelName="Nationality"
+            inputId="nationality"
+            colSpan="sm:col-span-3"
+            errorMsg="Nationality name is required"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}
-            valueKey={"countryName"}
+            valueKey={"nationality"}
             required
-            options={["Any", "Country_1", "Country_2", "Country_3"]}
+          />
+          <FormInput
+            input
+            inputType="number"
+            labelName="National ID / Passport Number"
+            inputId="nationalID"
+            colSpan="sm:col-span-3"
+            errorMsg="nationalID name is required"
+            setValue={setPersonalFormData}
+            setValidation={setPersonalFormValidity}
+            valueKey={"nationalID"}
+            required
           />
 
           <FormInput
             input
-            labelName="City"
-            inputId="city"
-            colSpan="3"
-            errorMsg="City name is required"
+            labelName="Place Of Birth"
+            inputId="birthBlace"
+            colSpan="sm:col-span-3"
+            errorMsg="Place Of Birth is required"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}
-            valueKey={"cityName"}
-            required
-          />
-          
-          <FormInput
-            input
-            labelName="Street address"
-            inputId="street-address"
-            errorMsg="Street address is required"
-            setValue={setPersonalFormData}
-            setValidation={setPersonalFormValidity}
-            valueKey={"address"}
+            valueKey={"birthBlace"}
             required
           />
 
@@ -175,7 +169,7 @@ const PersonalStep = () => {
             inputType="date"
             labelName="Birthday"
             inputId="birthday"
-            colSpan="3"
+            colSpan="sm:col-span-3"
             errorMsg="Birthday is required"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}
@@ -187,7 +181,7 @@ const PersonalStep = () => {
             radio
             legend="Gender"
             inputName="gender"
-            colSpan="2"
+            colSpan="col-span-3"
             errorMsg="Please select an option"
             setValue={setPersonalFormData}
             setValidation={setPersonalFormValidity}

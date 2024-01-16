@@ -4,6 +4,7 @@ const initialState = {
   stepOne: false,
   stepTwo: false,
   stepThree: false,
+  stepFour: false,
 };
 const formStepsReducer = (state, action) => {
   switch (action.type) {
@@ -29,38 +30,46 @@ const formStepsReducer = (state, action) => {
 const FormContext = createContext({
   formState: {},
   formCollections: {},
-  showInfo: false,
   isPopupVisible: false,
+  currentIndex: 0,
   dispatch: () => {},
   addToFormCollections: () => {},
-  showInfoHandler: () => {},
   restForm: () => {},
+  handleNext: () => {},
+  handleBack: () => {},
 });
 
 export const FormContextProvider = ({ children }) => {
   const [formState, dispatch] = useReducer(formStepsReducer, initialState);
   const [formCollections, setFormCollections] = useState({});
-  const [showInfo, setShowInfo] = useState(false);
   const [isPopupVisible, setPopupVisible] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  console.log(formCollections);
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % 5);
+  };
+
+  const handleBack = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + 5) % 5);
+  };
 
   const addToFormCollections = (formData, obj) => {
     setFormCollections((prevState) => {
       return { ...prevState, [formData]: obj };
     });
   };
-  const showInfoHandler = () => {
-    setShowInfo((prevState) => !prevState);
-  };
 
   const closePopup = () => {
     setPopupVisible(false);
   };
+
   const restForm = () => {
     dispatch({ type: "RESET" });
     setPopupVisible(true);
-    setShowInfo(false);
+    setCurrentIndex(0);
     setFormCollections({});
   };
+
   useEffect(() => {
     const timer = setTimeout(() => {
       closePopup();
@@ -73,12 +82,13 @@ export const FormContextProvider = ({ children }) => {
       value={{
         formState,
         formCollections,
-        showInfo,
         isPopupVisible,
+        currentIndex,
         dispatch,
         addToFormCollections,
-        showInfoHandler,
         restForm,
+        handleNext,
+        handleBack,
       }}
     >
       {children}

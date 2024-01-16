@@ -4,5 +4,15 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [require("@tailwindcss/forms"),
+
+  function ({ addUtilities }) {
+    const newUtilities = {
+      '.scrollbar-hidden::-webkit-scrollbar': {
+        display: 'none',
+      },
+    };
+
+    addUtilities(newUtilities, ['responsive', 'hover']);
+  },],
 };
