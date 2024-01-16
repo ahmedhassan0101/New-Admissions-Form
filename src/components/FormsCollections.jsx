@@ -4,7 +4,7 @@ import PreviousStudyStep from "./FormSteps/PreviousStudyStep";
 import FormContext from "../utils/form-context";
 import AdmissionStep from "./FormSteps/AdmissionStep";
 import ParentalStep from "./FormSteps/ParentalStep";
-import Submit from "./FormSteps/submit";
+import Submit from "./FormSteps/Submit";
 
 const FormsCollections = () => {
   const { currentIndex, handleNext, handleBack } = useContext(FormContext);
